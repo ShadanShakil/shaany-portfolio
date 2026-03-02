@@ -63,6 +63,7 @@ export function Hero() {
                                 fill
                                 className="object-contain object-bottom"
                                 priority
+                                fetchPriority="high"
                             />
                         </motion.div>
 

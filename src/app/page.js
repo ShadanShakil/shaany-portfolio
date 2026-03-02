@@ -1,14 +1,17 @@
 import { Navbar } from "@/components/Navbar";
 import { PageWrapper } from "@/components/PageWrapper";
 import { Hero } from "@/components/Hero";
-import { ClientMarquee } from "@/components/ClientMarquee";
-import { Services } from "@/components/Services";
-import { Portfolio } from "@/components/Portfolio";
-import { About } from "@/components/About";
-import { FAQ } from "@/components/FAQ";
-import { Pricing } from "@/components/Pricing";
-import { Blog } from "@/components/Blog";
-import { Contact } from "@/components/Contact";
+import dynamic from 'next/dynamic';
+
+// Lazy-load everything below the fold to drastically reduce initial JS payload
+const About = dynamic(() => import("@/components/About").then((mod) => mod.About));
+const ClientMarquee = dynamic(() => import("@/components/ClientMarquee").then((mod) => mod.ClientMarquee));
+const Portfolio = dynamic(() => import("@/components/Portfolio").then((mod) => mod.Portfolio));
+const Services = dynamic(() => import("@/components/Services").then((mod) => mod.Services));
+const Blog = dynamic(() => import("@/components/Blog").then((mod) => mod.Blog));
+const FAQ = dynamic(() => import("@/components/FAQ").then((mod) => mod.FAQ));
+const Pricing = dynamic(() => import("@/components/Pricing").then((mod) => mod.Pricing));
+const Contact = dynamic(() => import("@/components/Contact").then((mod) => mod.Contact));
 
 export default function Home() {
   return (
