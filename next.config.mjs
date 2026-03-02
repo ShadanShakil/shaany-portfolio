@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  /* config options here */
-  reactCompiler: true,
-  images: {
-    unoptimized: true,
-  },
+    images: {
+        domains: ['images.unsplash.com', 'localhost'], // Adding typical domains just in case, but removing unoptimized: true
+    }
 };
 
 export default nextConfig;

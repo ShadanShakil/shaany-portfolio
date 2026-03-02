@@ -59,6 +59,7 @@ function ProjectCard({ project, onClick }) {
                     muted
                     loop
                     playsInline
+                    preload="none"
                     autoPlay={false}
                     ref={(el) => {
                         if (el) {
