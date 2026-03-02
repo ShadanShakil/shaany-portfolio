@@ -23,6 +23,14 @@ const projects = [
 
 function ProjectCard({ project, onClick }) {
     const [isHovered, setIsHovered] = useState(false);
+    const [isBuffering, setIsBuffering] = useState(false);
+
+    // Handle hover states safely
+    const handleMouseEnter = () => setIsHovered(true);
+    const handleMouseLeave = () => {
+        setIsHovered(false);
+        setIsBuffering(false); // Reset loader if they leave before it plays
+    };
 
     return (
         <motion.div
@@ -32,13 +40,12 @@ function ProjectCard({ project, onClick }) {
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.4 }}
             className="group relative flex flex-col gap-4 cursor-pointer"
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
             onClick={onClick}
         >
             {/* Media Container */}
             <div className="relative aspect-[16/9] rounded-[32px] overflow-hidden bg-surface-medium border border-black/5 shadow-sm">
-
 
                 <Image
                     src={project.thumbnail}
@@ -61,16 +68,52 @@ function ProjectCard({ project, onClick }) {
                     playsInline
                     preload="none"
                     autoPlay={false}
+                    onWaiting={() => setIsBuffering(true)}
+                    onPlaying={() => setIsBuffering(false)}
                     ref={(el) => {
                         if (el) {
-                            if (isHovered) el.play().catch(() => { });
-                            else {
+                            if (isHovered) {
+                                // If hovering and paused, try to play and show loader initially
+                                if (el.paused) {
+                                    setIsBuffering(true);
+                                    el.play().catch(() => setIsBuffering(false));
+                                }
+                            } else {
                                 el.pause();
                                 el.currentTime = 0;
                             }
                         }
                     }}
                 />
+
+                {/* Animated Loader Overlay */}
+                <AnimatePresence>
+                    {isHovered && isBuffering && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-sm z-10"
+                        >
+                            <div className="relative flex items-center justify-center">
+                                {/* Outer spinning ring */}
+                                <motion.div
+                                    animate={{ rotate: 360 }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                    className="w-16 h-16 rounded-full border-t-2 border-r-2 border-primary-green opacity-80"
+                                />
+                                {/* Inner pulsing dot */}
+                                <motion.div
+                                    animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                                    transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                                    className="absolute w-4 h-4 rounded-full bg-primary-green"
+                                />
+                                {/* Glow effect */}
+                                <div className="absolute w-16 h-16 rounded-full bg-primary-green/20 blur-xl animate-pulse" />
+                            </div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
                 {/* Fallback Static State / Overlay */}
                 <div className={cn(
