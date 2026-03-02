@@ -11,14 +11,14 @@ const categories = ["All", "Commercials", "Socials/Shorts", "Motion Graphics"];
 
 // Placeholder data representing the drive contents
 const projects = [
-    { id: 1, title: "Cash Cow Series", category: "Commercials", videoSrc: "/assets/cash-cow.mp4", thumbnail: "/cash-cow-thumb.png?v=2" },
-    { id: 2, title: "Gaming Mastery", category: "Socials/Shorts", videoSrc: "/assets/gaming-sample-2.mp4", thumbnail: "/gaming-thumb.png?v=2" },
-    { id: 3, title: "Digital Edge", category: "Commercials", videoSrc: "/assets/os-digital-edge-.mp4", thumbnail: "/digital-edge-thumb.png?v=2" },
-    { id: 4, title: "SFX Design Final", category: "Commercials", videoSrc: "/assets/complete-sfx.mp4", thumbnail: "/sfx-thumb.png?v=2" },
-    { id: 5, title: "Social Content v2", category: "Socials/Shorts", videoSrc: "/assets/social-2.mp4", thumbnail: "/social-thumb.png?v=2" },
-    { id: 6, title: "Motion Finale", category: "Motion Graphics", videoSrc: "/assets/finale-2.mp4", thumbnail: "/digital-edge-thumb.png?v=2" },
-    { id: 7, title: "Dark Mode UI", category: "Motion Graphics", videoSrc: "/assets/darkmode-2.mp4", thumbnail: "/cash-cow-thumb.png?v=2" },
-    { id: 8, title: "Creative Captions", category: "Socials/Shorts", videoSrc: "/assets/captions-1.mp4", thumbnail: "/social-thumb.png?v=2" },
+    { id: 1, title: "Cash Cow Series", category: "Commercials", videoSrc: "/assets/cash-cow.mp4", thumbnail: "/cash-cow-thumb.png" },
+    { id: 2, title: "Gaming Mastery", category: "Socials/Shorts", videoSrc: "/assets/gaming-sample-2.mp4", thumbnail: "/gaming-thumb.png" },
+    { id: 3, title: "Digital Edge", category: "Commercials", videoSrc: "/assets/os-digital-edge-.mp4", thumbnail: "/digital-edge-thumb.png" },
+    { id: 4, title: "SFX Design Final", category: "Commercials", videoSrc: "/assets/complete-sfx.mp4", thumbnail: "/sfx-thumb.png" },
+    { id: 5, title: "Social Content v2", category: "Socials/Shorts", videoSrc: "/assets/social-2.mp4", thumbnail: "/social-thumb.png" },
+    { id: 6, title: "Motion Finale", category: "Motion Graphics", videoSrc: "/assets/finale-2.mp4", thumbnail: "/digital-edge-thumb.png" },
+    { id: 7, title: "Dark Mode UI", category: "Motion Graphics", videoSrc: "/assets/darkmode-2.mp4", thumbnail: "/cash-cow-thumb.png" },
+    { id: 8, title: "Creative Captions", category: "Socials/Shorts", videoSrc: "/assets/captions-1.mp4", thumbnail: "/social-thumb.png" },
 ];
 
 function ProjectCard({ project, onClick }) {

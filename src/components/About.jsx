@@ -62,7 +62,7 @@ export function About() {
                         className="relative h-[600px] rounded-[40px] overflow-hidden bg-white border border-black/5 shadow-xl order-1 lg:order-2"
                     >
                         <Image
-                            src="/about-studio.png?v=2"
+                            src="/about-studio.png"
                             alt="Professional video editing studio setup"
                             fill
                             className="object-cover"

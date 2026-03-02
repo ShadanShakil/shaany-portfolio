@@ -14,7 +14,7 @@ const posts = [
         date: "Oct 24, 2024",
         readTime: "8 min read",
         slug: "/blog/video-editing-speed",
-        image: "/blog-thumb-speed.png?v=2",
+        image: "/blog-thumb-speed.png",
         excerpt: "Speed in video editing doesn't mean rushing — it means working smarter. After years of professional editing, here are the 10 most impactful habits you can build to cut your editing time in half.",
     },
     {
@@ -23,7 +23,7 @@ const posts = [
         date: "Oct 18, 2024",
         readTime: "6 min read",
         slug: "/blog/color-psychology",
-        image: "/blog-thumb-color.png?v=2",
+        image: "/blog-thumb-color.png",
         excerpt: "Color is never neutral. Every shade in a commercial is a deliberate decision — a psychological cue designed to make you feel, want, or act.",
     },
     {
@@ -32,7 +32,7 @@ const posts = [
         date: "Oct 12, 2024",
         readTime: "7 min read",
         slug: "/blog/sound-design",
-        image: "/blog-thumb-sound.png?v=2",
+        image: "/blog-thumb-sound.png",
         excerpt: "Mute any blockbuster and it immediately feels cheap. The same clip with a perfectly designed soundscape transforms into something cinematic.",
     },
 ];
