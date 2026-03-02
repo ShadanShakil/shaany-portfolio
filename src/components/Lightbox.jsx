@@ -8,6 +8,7 @@ export function Lightbox({ isOpen, videoSrc, onClose, title }) {
     const videoRef = useRef(null);
     const [isPlaying, setIsPlaying] = useState(true);
     const [isMuted, setIsMuted] = useState(false);
+    const [isBuffering, setIsBuffering] = useState(true);
 
     // Close on Escape key
     useEffect(() => {
@@ -74,7 +75,39 @@ export function Lightbox({ isOpen, videoSrc, onClose, title }) {
                             playsInline
                             onPlay={() => setIsPlaying(true)}
                             onPause={() => setIsPlaying(false)}
+                            onWaiting={() => setIsBuffering(true)}
+                            onPlaying={() => setIsBuffering(false)}
+                            onCanPlay={() => setIsBuffering(false)}
                         />
+
+                        {/* Animated Loader Overlay */}
+                        <AnimatePresence>
+                            {isBuffering && (
+                                <motion.div
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    className="absolute inset-0 bg-black/40 flex items-center justify-center backdrop-blur-sm z-10 pointer-events-none"
+                                >
+                                    <div className="relative flex items-center justify-center">
+                                        {/* Outer spinning ring */}
+                                        <motion.div
+                                            animate={{ rotate: 360 }}
+                                            transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+                                            className="w-16 h-16 rounded-full border-t-2 border-r-2 border-primary-green opacity-80"
+                                        />
+                                        {/* Inner pulsing dot */}
+                                        <motion.div
+                                            animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
+                                            transition={{ duration: 1.2, repeat: Infinity, ease: "easeInOut" }}
+                                            className="absolute w-4 h-4 rounded-full bg-primary-green"
+                                        />
+                                        {/* Glow effect */}
+                                        <div className="absolute w-16 h-16 rounded-full bg-primary-green/20 blur-xl animate-pulse" />
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
 
                         {/* Custom Controls Overlay */}
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6 md:p-10">
